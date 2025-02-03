@@ -6495,6 +6495,7 @@ __metadata:
     "@redwoodjs/api": 6.3.1
     "@redwoodjs/auth-dbauth-api": 6.3.1
     "@redwoodjs/graphql-server": 6.3.1
+    nodemailer: ^6.10.0
   languageName: unknown
   linkType: soft
 
@@ -15183,6 +15184,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nodemailer@npm:^6.10.0":
+  version: 6.10.0
+  resolution: "nodemailer@npm:6.10.0"
+  checksum: 39fd35d65b021b94c968eeac82a66dd843021b6ba53c659d01b1dd4cda73b6a2f96e20facfe500efa4b8d3f1cb23df10245c6c86b2bde5f806691ed17ce87826
+  languageName: node
+  linkType: hard
+
 "nodemon@npm:2.0.22":
   version: 2.0.22
   resolution: "nodemon@npm:2.0.22"
@@ -20338,6 +20346,7 @@ __metadata:
     "@tailwindcss/line-clamp": 0.4.4
     "@tailwindcss/typography": 0.5.10
     autoprefixer: 10.4.16
+    humanize-string: 2.1.0
     postcss: 8.4.30
     postcss-loader: 7.3.3
     prop-types: 15.8.1
