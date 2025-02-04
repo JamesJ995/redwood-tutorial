@@ -6,6 +6,7 @@ export const QUERY = gql`
   query USERS {
     users {
       id
+      email
     }
   }
 `
@@ -15,7 +16,7 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => {
   return (
     <div className="rw-text-center">
-      {'No posts yet. '}
+      {'No users yet. '}
       <Link to={routes.newUser()} className="rw-link">
         {'Create one?'}
       </Link>

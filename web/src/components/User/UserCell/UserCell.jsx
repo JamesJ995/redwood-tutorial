@@ -2,6 +2,7 @@ export const QUERY = gql`
   query FindUserQuery($id: Int!) {
     user: user(id: $id) {
       id
+      email
     }
   }
 `

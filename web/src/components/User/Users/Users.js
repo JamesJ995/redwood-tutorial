@@ -8,6 +8,7 @@ const DELETE_USER_MUTATION = gql`
   mutation DeleteUserMutation($id: Int!) {
     deleteUser(id: $id) {
       id
+      email
     }
   }
 `
@@ -62,9 +63,7 @@ const UsersList = ({ users }) => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Title</th>
-            <th>Body</th>
-            <th>Created at</th>
+            <th>Email</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -72,6 +71,7 @@ const UsersList = ({ users }) => {
           {users.map((user) => (
             <tr key={user.id}>
               <td>{truncate(user.id)}</td>
+              <td>{truncate(user.email)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
