@@ -2,11 +2,11 @@ import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { QUERY } from 'src/components/Post/PostsCell'
+import { QUERY } from 'src/components/User/UsersCell'
 
-const DELETE_POST_MUTATION = gql`
-  mutation DeletePostMutation($id: Int!) {
-    deletePost(id: $id) {
+const DELETE_USER_MUTATION = gql`
+  mutation DeleteUserMutation($id: Int!) {
+    deleteUser(id: $id) {
       id
     }
   }
@@ -26,22 +26,22 @@ const truncate = (text) => {
 //   return truncate(JSON.stringify(obj, null, 2))
 // }
 
-const timeTag = (datetime) => {
-  return (
-    <time dateTime={datetime} title={datetime}>
-      {new Date(datetime).toUTCString()}
-    </time>
-  )
-}
+// const timeTag = (datetime) => {
+//   return (
+//     <time dateTime={datetime} title={datetime}>
+//       {new Date(datetime).toUTCString()}
+//     </time>
+//   )
+// }
 
 // const checkboxInputTag = (checked) => {
 //   return <input type="checkbox" checked={checked} disabled />
 // }
 
-const PostsList = ({ posts }) => {
-  const [deletePost] = useMutation(DELETE_POST_MUTATION, {
+const UsersList = ({ users }) => {
+  const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
     onCompleted: () => {
-      toast.success('Post deleted')
+      toast.success('User deleted')
     },
     // This refetches the query on the list page. Read more about other ways to
     // update the cache over here:
@@ -51,8 +51,8 @@ const PostsList = ({ posts }) => {
   })
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete post ' + id + '?')) {
-      deletePost({ variables: { id } })
+    if (confirm('Are you sure you want to delete User ' + id + '?')) {
+      deleteUser({ variables: { id } })
     }
   }
 
@@ -69,33 +69,30 @@ const PostsList = ({ posts }) => {
           </tr>
         </thead>
         <tbody>
-          {posts.map((post) => (
-            <tr key={post.id}>
-              <td>{truncate(post.id)}</td>
-              <td>{truncate(post.title)}</td>
-              <td>{truncate(post.body)}</td>
-              <td>{timeTag(post.createdAt)}</td>
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td>{truncate(user.id)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
-                    to={routes.post({ id: post.id })}
-                    title={'Show post ' + post.id + ' detail'}
+                    to={routes.user({ id: user.id })}
+                    title={'Show user ' + user.id + ' detail'}
                     className="rw-button rw-button-small"
                   >
                     Show
                   </Link>
-                  <Link
-                    to={routes.editPost({ id: post.id })}
-                    title={'Edit post ' + post.id}
+                  {/* <Link
+                    to={routes.editUser({ id: user.id })}
+                    title={'Edit user ' + user.id}
                     className="rw-button rw-button-small rw-button-blue"
                   >
                     Edit
-                  </Link>
+                  </Link> */}
                   <button
                     href="#"
-                    title={'Delete post ' + post.id}
+                    title={'Delete user ' + user.id}
                     className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(post.id)}
+                    onClick={() => onDeleteClick(user.id)}
                   >
                     Delete
                   </button>
@@ -109,4 +106,4 @@ const PostsList = ({ posts }) => {
   )
 }
 
-export default PostsList
+export default UsersList
