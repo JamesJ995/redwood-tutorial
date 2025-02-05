@@ -1,6 +1,8 @@
 import { db } from 'src/lib/db'
 import { sendEmail } from 'src/lib/email'
 
+import { createAudit } from '../audits/audits'
+
 export const users = () => {
   return db.user.findMany()
 }
@@ -36,17 +38,16 @@ export const emailUser = async ({ id }) => {
   })
 
   await sendTestEmail(user.email)
+  await createAudit({
+    input: { userId: id, log: 'Admin sent test email to user' },
+  })
 
   return user
 }
 
 function sendTestEmail(emailAddress) {
-  const subject = 'Test Email'
-  const text =
-    'This is a manually triggered test email.\n\n' +
-    'It was sent from a RedwoodJS application.'
-  const html =
-    'This is a manually triggered test email.<br><br>' +
-    'It was sent from a RedwoodJS application.'
+  const subject = 'Welcome to The Sami Chess Dojo'
+  const text = 'Welcome to the Dojo.\n\n'
+  const html = 'Welcome to the Dojo.<br><br>'
   return sendEmail({ to: emailAddress, subject, text, html })
 }

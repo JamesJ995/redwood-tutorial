@@ -18,6 +18,7 @@ import UsersLayout from './layouts/UsersLayout/UsersLayout'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Route path="/crochet" page={CrochetPage} name="crochet" />
       <Set wrap={ScaffoldLayout} title="Audits" titleTo="audits" buttonLabel="New Audit" buttonTo="newAudit">
         <Route path="/audits/new" page={AuditNewAuditPage} name="newAudit" />
         <Route path="/audits/{id:Int}/edit" page={AuditEditAuditPage} name="editAudit" />
