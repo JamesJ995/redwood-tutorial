@@ -34,6 +34,8 @@ model User {
   resetTokenExpiresAt DateTime?
   roles               String    @default("moderator")
   audits              Audit[]
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @default(now())
 }
 
 model Comment {

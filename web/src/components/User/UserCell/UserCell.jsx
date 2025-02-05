@@ -1,3 +1,5 @@
+import User from 'src/components/User/User'
+
 export const QUERY = gql`
   query FindUserQuery($id: Int!) {
     user: user(id: $id) {
@@ -16,5 +18,5 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ user }) => {
-  return <div>{JSON.stringify(user)}</div>
+  return <User user={user} />
 }

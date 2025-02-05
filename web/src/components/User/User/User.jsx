@@ -1,4 +1,4 @@
-import { Link, routes, navigate } from '@redwoodjs/router'
+import { routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
@@ -11,7 +11,7 @@ const DELETE_USER_MUTATION = gql`
 `
 
 const EMAIL_USER_MUTATION = gql`
-  mutation EmailUserMutation($id: String!) {
+  mutation EmailUserMutation($id: Int!) {
     emailUser(id: $id) {
       id
     }
@@ -53,7 +53,11 @@ const User = ({ user }) => {
   }
 
   const onEmailClick = (user) => {
-    if (confirm(`Are you sure you want to send an email to ${user.name}?`)) {
+    if (
+      confirm(
+        `Are you sure you want to send an email to ${user.email}? ${user.id}?`
+      )
+    ) {
       emailUser({ variables: { id: user.id } })
     }
   }
@@ -80,12 +84,12 @@ const User = ({ user }) => {
         </table>
       </div>
       <nav className="rw-button-group">
-        <Link
+        {/* <Link
           to={routes.editUser({ id: user.id })}
           className="rw-button rw-button-blue"
         >
           Edit
-        </Link>
+        </Link> */}
         <button
           type="button"
           className="rw-button rw-button-red"
